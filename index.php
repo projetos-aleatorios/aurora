@@ -1,5 +1,5 @@
 <?php
 require 'Geo.php';
 
-new Geo\IP();
+new Geo\Grabber();
 echo "Hello, World!";

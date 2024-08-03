@@ -1,11 +1,8 @@
 <?php
 
-namespace Server;
+namespace Aurora;
 
-require_once 'Console.php';
-use Console\AuroraConsole;
-
-class AuroraServer
+class Server
 {
 
     private $_status;
@@ -21,7 +18,7 @@ class AuroraServer
 
     private function debug(): void
     {
-        $print = new AuroraConsole();
+        $print = new Console();
         $print->ln($this->ip(), $this->method());
     }
 
@@ -33,5 +30,25 @@ class AuroraServer
     private function method(): string
     {
         return $_SERVER['REQUEST_METHOD'];
+    }
+}
+
+class Console
+{
+
+    public function ln(mixed ...$message): void
+    {
+        foreach ($message as $i => $value) {
+            $content = $this->type($message[$i]);
+            error_log($content);
+        }
+    }
+
+    private function type(mixed $x): mixed
+    {
+        if (is_bool($x)) {
+            return $x ? "true" : "false";
+        }
+        return $x;
     }
 }

